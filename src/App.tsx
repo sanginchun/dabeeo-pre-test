@@ -1,11 +1,31 @@
-import React from 'react';
-import DabeeoMap from './components/DabeeoMap/DabeeoMap';
+import React, { useState, SyntheticEvent } from 'react';
+import MapView from './components/MapView';
+import MapImageContainer from './components/MapImgContainer';
+import MAP_IMAGE from './assets/map.png';
+import { Pos } from './types';
+import { calcCenter } from './utils/positions';
 
-const WIDTH = 1024;
-const HEIGHT = 768;
+const VIEW_WIDTH = 1024;
+const VIEW_HEIGHT = 768;
 
 function App(): JSX.Element {
-  return <DabeeoMap width={WIDTH} height={HEIGHT} />;
+  const [mapPos, setMapPos] = useState<Pos>([0, 0]);
+
+  const setMapToCenter = (e: SyntheticEvent<HTMLImageElement>): void => {
+    const { width, height } = e.currentTarget;
+
+    setMapPos(calcCenter(VIEW_WIDTH, VIEW_HEIGHT, width, height));
+  };
+
+  return (
+    <MapView width={VIEW_WIDTH} height={VIEW_HEIGHT}>
+      <MapImageContainer
+        imageSrc={MAP_IMAGE}
+        onImageLoad={setMapToCenter}
+        position={mapPos}
+      />
+    </MapView>
+  );
 }
 
 export default App;
