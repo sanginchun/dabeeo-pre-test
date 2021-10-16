@@ -1,4 +1,5 @@
 import React from 'react';
+import MapContainer from './MapContainer/MapContainer';
 
 type MapProps = {
   width: number;
@@ -7,14 +8,18 @@ type MapProps = {
 
 function DabeeoMap(props: MapProps): JSX.Element {
   const { width, height } = props;
+
   return (
     <div
       style={{
         width: `${width}px`,
         height: `${height}px`,
-        backgroundColor: 'red',
+        overflow: 'hidden',
+        position: 'relative',
       }}
-    ></div>
+    >
+      <MapContainer />
+    </div>
   );
 }
 
