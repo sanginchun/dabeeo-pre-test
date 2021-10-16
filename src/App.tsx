@@ -3,19 +3,23 @@ import MapView from './components/MapView';
 import MapImageContainer from './components/MapImgContainer';
 import MAP_IMAGE from './assets/map.png';
 import { Pos } from './types';
-import { calcCenter } from './utils/positions';
+import { calcCenter, calcPosition } from './utils/positions';
 
 const VIEW_WIDTH = 1024;
 const VIEW_HEIGHT = 768;
+
+let MAP_WIDTH: number;
+let MAP_HEIGHT: number;
 
 function App(): JSX.Element {
   const [mapPos, setMapPos] = useState<Pos>([0, 0]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
-  const setMapToCenter = (e: SyntheticEvent<HTMLImageElement>): void => {
-    const { width, height } = e.currentTarget;
+  const handleMapImageLoad = (e: SyntheticEvent<HTMLImageElement>): void => {
+    MAP_WIDTH = e.currentTarget.width;
+    MAP_HEIGHT = e.currentTarget.height;
 
-    setMapPos(calcCenter(VIEW_WIDTH, VIEW_HEIGHT, width, height));
+    setMapPos(calcCenter(VIEW_WIDTH, VIEW_HEIGHT, MAP_WIDTH, MAP_HEIGHT));
   };
 
   const handleDrag = (e: MouseEvent<HTMLDivElement>): void => {
@@ -23,10 +27,12 @@ function App(): JSX.Element {
 
     if (!isDragging) return;
 
-    setMapPos((prevPos) => [
-      prevPos[0] + e.movementX,
-      prevPos[1] + e.movementY,
-    ]);
+    setMapPos((prevPos) =>
+      calcPosition(VIEW_WIDTH, VIEW_HEIGHT, MAP_WIDTH, MAP_HEIGHT, [
+        prevPos[0] + e.movementX,
+        prevPos[1] + e.movementY,
+      ])
+    );
   };
 
   return (
@@ -42,7 +48,7 @@ function App(): JSX.Element {
       >
         <MapImageContainer
           imageSrc={MAP_IMAGE}
-          onImageLoad={setMapToCenter}
+          onImageLoad={handleMapImageLoad}
           position={mapPos}
         />
       </MapView>
