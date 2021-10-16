@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from 'react';
+import React, { MouseEventHandler, PropsWithChildren } from 'react';
 
 type MapViewProps = {
   width: number;
   height: number;
+  onMouseDown: MouseEventHandler;
 };
 
 function MapView(props: PropsWithChildren<MapViewProps>): JSX.Element {
-  const { width, height, children } = props;
+  const { width, height, onMouseDown, children } = props;
 
   return (
     <div
@@ -16,6 +17,7 @@ function MapView(props: PropsWithChildren<MapViewProps>): JSX.Element {
         overflow: 'hidden',
         position: 'relative',
       }}
+      onMouseDown={onMouseDown}
     >
       {children}
     </div>
