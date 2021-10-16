@@ -8,10 +8,9 @@ function MapContainer(): JSX.Element {
         position: 'absolute',
         top: 0,
         left: 0,
-        width: 'max-content',
       }}
     >
-      <img src={MAP_IMAGE} />
+      <img src={MAP_IMAGE} alt="map" style={{ display: 'block' }} />
     </div>
   );
 }
