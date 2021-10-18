@@ -21,7 +21,7 @@ function App(): JSX.Element {
     mapHeight,
     setPosition
   );
-  const { markerPositions, addMarker, resetMarkers } = useMarkers();
+  const { markerPositions, addMarker, resetMarkers } = useMarkers([]);
 
   return (
     <div

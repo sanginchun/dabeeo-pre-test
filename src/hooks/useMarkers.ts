@@ -1,8 +1,8 @@
 import { SyntheticEvent, useState } from 'react';
 import { Pos } from '../types';
 
-export function useMarkers() {
-  const [markerPositions, setPositions] = useState<Pos[]>([]);
+export function useMarkers(initialPositions: Pos[]) {
+  const [markerPositions, setPositions] = useState<Pos[]>(initialPositions);
 
   const addMarker = (e: SyntheticEvent<HTMLDivElement>): void => {
     e.preventDefault();
