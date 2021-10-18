@@ -5,12 +5,13 @@ type MapContainerProps = {
   imageSrc: string;
   position: Pos;
   onImageLoad: EventHandler<SyntheticEvent>;
+  onRightClick: EventHandler<SyntheticEvent>;
 };
 
 function MapContainer(
   props: PropsWithChildren<MapContainerProps>
 ): JSX.Element {
-  const { imageSrc, position, onImageLoad, children } = props;
+  const { imageSrc, position, onImageLoad, onRightClick, children } = props;
 
   return (
     <div
@@ -19,6 +20,7 @@ function MapContainer(
         top: `${position[1]}px`,
         left: `${position[0]}px`,
       }}
+      onContextMenu={onRightClick}
     >
       <img
         src={imageSrc}

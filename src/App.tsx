@@ -37,6 +37,14 @@ function App(): JSX.Element {
     );
   };
 
+  const handleRightClick = (e: SyntheticEvent<HTMLDivElement>): void => {
+    e.preventDefault();
+
+    const { offsetX, offsetY } = e.nativeEvent as PointerEvent;
+
+    setMarkersPos((prev) => [...prev, [offsetX, offsetY]]);
+  };
+
   return (
     <div
       style={{ cursor: isDragging ? 'move' : 'default' }}
@@ -52,6 +60,7 @@ function App(): JSX.Element {
           imageSrc={MAP_IMAGE}
           onImageLoad={handleMapImageLoad}
           position={mapPos}
+          onRightClick={handleRightClick}
         >
           <MarkerLayer markersPos={markersPos} />
         </MapContainer>
