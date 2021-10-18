@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { EventHandler, SyntheticEvent } from 'react';
 import BUTTON_IMAGE from '../../assets/reset.png';
 
-function MarkerResetButton() {
+type MarkerResetButtonProps = {
+  onClick: EventHandler<SyntheticEvent>;
+};
+
+function MarkerResetButton(props: MarkerResetButtonProps) {
+  const { onClick } = props;
+
   return (
     <button
       style={{
@@ -15,6 +21,7 @@ function MarkerResetButton() {
         alignItems: 'center',
         cursor: 'pointer',
       }}
+      onClick={onClick}
     >
       <img src={BUTTON_IMAGE} alt="reset" />
     </button>

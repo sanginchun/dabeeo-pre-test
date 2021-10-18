@@ -60,6 +60,12 @@ function App(): JSX.Element {
     setMarkersPos((prev) => [...prev, [offsetX, offsetY]]);
   };
 
+  const handleResetButtonClick = (
+    e: SyntheticEvent<HTMLButtonElement>
+  ): void => {
+    setMarkersPos([]);
+  };
+
   return (
     <div
       style={{ cursor: isDragging ? 'move' : 'default' }}
@@ -71,7 +77,7 @@ function App(): JSX.Element {
         height={VIEW_HEIGHT}
         onMouseDown={handleMouseDown}
       >
-        <MarkerResetButton />
+        <MarkerResetButton onClick={handleResetButtonClick} />
         <MapContainer
           imageSrc={MAP_IMAGE}
           onImageLoad={handleMapImageLoad}
