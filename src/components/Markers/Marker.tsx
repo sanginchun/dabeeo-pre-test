@@ -3,18 +3,18 @@ import MARKER_IMAGE from '../../assets/marker.png';
 import { Pos } from '../../types';
 
 type MarkerProps = {
-  pos: Pos;
+  position: Pos;
 };
 
 function Marker(props: MarkerProps) {
-  const { pos } = props;
+  const { position } = props;
 
   return (
     <div
       style={{
         position: 'absolute',
-        top: `${pos[1]}px`,
-        left: `${pos[0]}px`,
+        top: `${position[1]}px`,
+        left: `${position[0]}px`,
         transform: 'translate(-40%, -88%)',
       }}
     >
