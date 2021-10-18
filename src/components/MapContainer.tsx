@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, EventHandler } from 'react';
+import React, { SyntheticEvent, EventHandler, PropsWithChildren } from 'react';
 import { Pos } from '../types';
 
 type MapContainerProps = {
@@ -7,8 +7,10 @@ type MapContainerProps = {
   onImageLoad: EventHandler<SyntheticEvent>;
 };
 
-function MapContainer(props: MapContainerProps): JSX.Element {
-  const { imageSrc, position, onImageLoad } = props;
+function MapContainer(
+  props: PropsWithChildren<MapContainerProps>
+): JSX.Element {
+  const { imageSrc, position, onImageLoad, children } = props;
 
   return (
     <div
@@ -24,6 +26,7 @@ function MapContainer(props: MapContainerProps): JSX.Element {
         style={{ display: 'block' }}
         onLoad={onImageLoad}
       />
+      {children}
     </div>
   );
 }

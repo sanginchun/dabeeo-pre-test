@@ -2,6 +2,7 @@ import React, { useState, SyntheticEvent, MouseEvent } from 'react';
 import MapView from './components/MapView';
 import MapContainer from './components/MapContainer';
 import MAP_IMAGE from './assets/map.png';
+import MarkerLayer from './components/Markers/MarkerLayer';
 import { Pos } from './types';
 import { calcCenter, calcPosition } from './utils/positions';
 
@@ -13,6 +14,7 @@ let MAP_HEIGHT: number;
 
 function App(): JSX.Element {
   const [mapPos, setMapPos] = useState<Pos>([0, 0]);
+  const [markersPos, setMarkersPos] = useState<Pos[]>([]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   const handleMapImageLoad = (e: SyntheticEvent<HTMLImageElement>): void => {
@@ -50,7 +52,9 @@ function App(): JSX.Element {
           imageSrc={MAP_IMAGE}
           onImageLoad={handleMapImageLoad}
           position={mapPos}
-        />
+        >
+          <MarkerLayer markersPos={markersPos} />
+        </MapContainer>
       </MapView>
     </div>
   );
