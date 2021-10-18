@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent, MouseEvent } from 'react';
 import MapView from './components/MapView';
-import MapImageContainer from './components/MapImgContainer';
+import MapContainer from './components/MapContainer';
 import MAP_IMAGE from './assets/map.png';
 import { Pos } from './types';
 import { calcCenter, calcPosition } from './utils/positions';
@@ -46,7 +46,7 @@ function App(): JSX.Element {
         height={VIEW_HEIGHT}
         onMouseDown={() => setIsDragging(true)}
       >
-        <MapImageContainer
+        <MapContainer
           imageSrc={MAP_IMAGE}
           onImageLoad={handleMapImageLoad}
           position={mapPos}

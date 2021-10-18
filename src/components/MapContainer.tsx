@@ -1,13 +1,13 @@
 import React, { SyntheticEvent, EventHandler } from 'react';
 import { Pos } from '../types';
 
-type MapImgContainerProps = {
+type MapContainerProps = {
   imageSrc: string;
   position: Pos;
   onImageLoad: EventHandler<SyntheticEvent>;
 };
 
-function MapImgContainer(props: MapImgContainerProps): JSX.Element {
+function MapContainer(props: MapContainerProps): JSX.Element {
   const { imageSrc, position, onImageLoad } = props;
 
   return (
@@ -28,4 +28,4 @@ function MapImgContainer(props: MapImgContainerProps): JSX.Element {
   );
 }
 
-export default MapImgContainer;
+export default MapContainer;
