@@ -3,6 +3,7 @@ import MapView from './components/MapView';
 import MapContainer from './components/MapContainer';
 import MAP_IMAGE from './assets/map.png';
 import MarkerLayer from './components/Markers/MarkerLayer';
+import MarkerResetButton from './components/Markers/MarkerResetButton';
 import { Pos } from './types';
 import { calcCenter, calcPosition } from './utils/positions';
 
@@ -70,6 +71,7 @@ function App(): JSX.Element {
         height={VIEW_HEIGHT}
         onMouseDown={handleMouseDown}
       >
+        <MarkerResetButton />
         <MapContainer
           imageSrc={MAP_IMAGE}
           onImageLoad={handleMapImageLoad}
