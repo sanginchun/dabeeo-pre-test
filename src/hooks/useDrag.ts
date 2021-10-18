@@ -11,19 +11,19 @@ export function useDrag(
 ) {
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
-  const handleMouseDown = (e: MouseEvent<HTMLDivElement>): void => {
+  const dragStart = (e: MouseEvent<HTMLDivElement>): void => {
     if (e.button === 0) {
       setIsDragging(true);
     }
   };
 
-  const handleMouseUp = (e: MouseEvent<HTMLDivElement>): void => {
+  const dragEnd = (e: MouseEvent<HTMLDivElement>): void => {
     if (e.button === 0 && isDragging) {
       setIsDragging(false);
     }
   };
 
-  const handleDrag = (e: MouseEvent<HTMLDivElement>): void => {
+  const drag = (e: MouseEvent<HTMLDivElement>): void => {
     e.preventDefault();
 
     if (!isDragging) return;
@@ -36,5 +36,5 @@ export function useDrag(
     );
   };
 
-  return { isDragging, handleMouseDown, handleMouseUp, handleDrag };
+  return { isDragging, dragStart, dragEnd, drag };
 }

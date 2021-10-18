@@ -14,7 +14,7 @@ const VIEW_HEIGHT = 768;
 function App(): JSX.Element {
   const { position, setPosition, handleMapImageLoad, mapWidth, mapHeight } =
     useMap(VIEW_WIDTH, VIEW_HEIGHT);
-  const { isDragging, handleMouseDown, handleMouseUp, handleDrag } = useDrag(
+  const { isDragging, dragStart, dragEnd, drag } = useDrag(
     VIEW_WIDTH,
     VIEW_HEIGHT,
     mapWidth,
@@ -26,14 +26,10 @@ function App(): JSX.Element {
   return (
     <div
       style={{ cursor: isDragging ? 'move' : 'default' }}
-      onMouseMove={handleDrag}
-      onMouseUp={handleMouseUp}
+      onMouseMove={drag}
+      onMouseUp={dragEnd}
     >
-      <MapView
-        width={VIEW_WIDTH}
-        height={VIEW_HEIGHT}
-        onMouseDown={handleMouseDown}
-      >
+      <MapView width={VIEW_WIDTH} height={VIEW_HEIGHT} onMouseDown={dragStart}>
         <MarkerResetButton onClick={resetMarkers} />
         <MapContainer
           imageSrc={MAP_IMAGE}
