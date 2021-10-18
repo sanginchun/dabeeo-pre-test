@@ -9,7 +9,9 @@ type MarkerLayerProps = {
 function MarkerLayer(props: MarkerLayerProps): JSX.Element {
   const { markersPos } = props;
 
-  const Markers = markersPos.map((pos: Pos) => <Marker pos={pos} />);
+  const Markers = markersPos.map((pos: Pos) => (
+    <Marker key={`${pos[0]},${pos[1]}`} pos={pos} />
+  ));
 
   return <>{Markers}</>;
 }
