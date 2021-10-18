@@ -11,7 +11,12 @@ function Marker(props: MarkerProps) {
 
   return (
     <div
-      style={{ position: 'absolute', top: `${pos[1]}px`, left: `${pos[0]}px` }}
+      style={{
+        position: 'absolute',
+        top: `${pos[1]}px`,
+        left: `${pos[0]}px`,
+        transform: 'translate(-40%, -88%)',
+      }}
     >
       <img src={MARKER_IMAGE} alt="marker" />
     </div>
