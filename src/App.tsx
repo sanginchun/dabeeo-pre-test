@@ -33,7 +33,7 @@ function App(): JSX.Element {
   };
 
   const handleMouseUp = (e: MouseEvent<HTMLDivElement>): void => {
-    if (e.button === 0) {
+    if (e.button === 0 && isDragging) {
       // left click
       setIsDragging(false);
     }
