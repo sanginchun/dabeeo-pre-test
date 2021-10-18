@@ -24,6 +24,20 @@ function App(): JSX.Element {
     setMapPos(calcCenter(VIEW_WIDTH, VIEW_HEIGHT, MAP_WIDTH, MAP_HEIGHT));
   };
 
+  const handleMouseDown = (e: MouseEvent<HTMLDivElement>): void => {
+    if (e.button === 0) {
+      // left click
+      setIsDragging(true);
+    }
+  };
+
+  const handleMouseUp = (e: MouseEvent<HTMLDivElement>): void => {
+    if (e.button === 0) {
+      // left click
+      setIsDragging(false);
+    }
+  };
+
   const handleDrag = (e: MouseEvent<HTMLDivElement>): void => {
     e.preventDefault();
 
@@ -49,12 +63,12 @@ function App(): JSX.Element {
     <div
       style={{ cursor: isDragging ? 'move' : 'default' }}
       onMouseMove={handleDrag}
-      onMouseUp={() => setIsDragging(false)}
+      onMouseUp={handleMouseUp}
     >
       <MapView
         width={VIEW_WIDTH}
         height={VIEW_HEIGHT}
-        onMouseDown={() => setIsDragging(true)}
+        onMouseDown={handleMouseDown}
       >
         <MapContainer
           imageSrc={MAP_IMAGE}
