@@ -25,7 +25,7 @@ function App(): JSX.Element {
 
   return (
     <div
-      style={{ cursor: isDragging ? 'move' : 'default' }}
+      style={{ cursor: isDragging ? 'move' : 'default', height: '100vh' }}
       onMouseMove={drag}
       onMouseUp={dragEnd}
     >
